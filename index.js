@@ -49,11 +49,13 @@ function fetchData() {
       infoTxt.classList.replace("pending", "error");
     });
 }
-//display all weather data on DOm
+//getting all weather data.
 function weatherDetails(info) {
+  //if error acer display error message.
   if (info.cod == "404") {
     infoTxt.classList.replace("pending", "error");
     infoTxt.innerText = `${inputField.value} isn't a valid city name`;
+    //else getting all information from weather API.
   } else {
     const city = info.name;
     const country = info.sys.country;
@@ -61,6 +63,7 @@ function weatherDetails(info) {
     const { temp, feels_like, temp_min, temp_max, humidity } = info.main;
     const { speed } = info.wind;
 
+    //assign a all weather data to DOM.
     wIcon.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
     weatherPart.querySelector(".hi").innerText = Math.floor(temp_max);
     weatherPart.querySelector(".lo").innerText = Math.floor(temp_min);
@@ -78,9 +81,10 @@ function weatherDetails(info) {
     inputField.value = "";
     wrapper.classList.add("active");
 
+    let giphyInput = description.split(" ").join("");
     //fetching giphy api to get image on user city weather description.
     fetch(
-      `https://api.giphy.com/v1/gifs/translate?api_key=GvZ2K72ZzIrIZ0bWQk6QyGftYOPKVYCB&s=${description}`
+      `https://api.giphy.com/v1/gifs/translate?api_key=GvZ2K72ZzIrIZ0bWQk6QyGftYOPKVYCB&s=${giphyInput}`
     )
       .then((res) => {
         return res.json();
