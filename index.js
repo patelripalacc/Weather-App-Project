@@ -69,7 +69,7 @@ function weatherDetails(info) {
     weatherPart.querySelector(".lo").innerText = Math.floor(temp_min);
     weatherPart.querySelector(".wind").innerText = `Wind: ${speed} mph`;
     weatherPart.querySelector(".temp .numb").innerText = Math.floor(temp);
-    weatherPart.querySelector(".weather").innerText = description.toUpperCase();
+    weatherPart.querySelector(".weather").innerText = description;     //description.toUpperCase();
     weatherPart.querySelector(
       ".location span"
     ).innerText = `${city}, ${country}`;
